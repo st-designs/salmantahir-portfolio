@@ -46,3 +46,5 @@ You need a free GitHub account (github.com). Two ways to push; pick one.
 ## Notes
 - Site root is this folder; `index.html` is the home page. No build step.
 - If you ever move hosting again, it's just static files, fully portable, zero lock-in.
+- The site uses clean URLs (`/about/`, `/work/`, `/work/<slug>/`, etc.), each a folder with its own `index.html`. Cloudflare Pages serves these automatically. A root-level `_redirects` file 301-redirects the old flat `.html` URLs to the new paths, don't delete it.
+- A handful of older projects (Fxcubict, Stofficials, eVendor) intentionally still link out to legacy WordPress posts still live at `salmantahir.net/2023/...`, that's expected, not a broken migration.

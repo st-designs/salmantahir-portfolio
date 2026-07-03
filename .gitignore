@@ -9,8 +9,11 @@ node_modules/
 .wrangler/
 *.log
 
-# Source originals kept locally, not deployed (CV + full-res logos)
-Assets/
+# Source-only originals kept locally, not deployed (full-res logos, raw covers)
+originals/
+
+# Internal working notes, not for the public repo
+CONTEXT.md
 
 # Old backups
 *-backup-*/

@@ -1,0 +1,10 @@
+# Cloudflare Pages redirects
+# Preserve old URLs after the folder restructure (2026-07-03), 301 = permanent.
+
+/index.html                        /                                301
+/about.html                        /about/                          301
+/work.html                         /work/                            301
+/contact.html                      /contact/                         301
+/case-tag-technologies.html        /work/tag-technologies/           301
+/case-bizdigital.html              /work/bizdigital/                 301
+/case-pdf-chapter-splitter.html    /work/pdf-chapter-splitter/       301
