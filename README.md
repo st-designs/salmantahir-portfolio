@@ -33,16 +33,51 @@ Vanilla HTML, CSS and JavaScript. No framework, no bundler.
 ## Structure
 
 ```
-index.html            home
-about/                about
-work/                 work index, filterable
-work/<slug>/          one folder per case study
-contact/              contact form
-assets/css/site.css   the whole design system
-assets/js/site.js     reveals, filtering, cursor, form
-functions/api/        Pages Functions
-_redirects            old URLs, kept alive
+index.html                 home
+about/index.html           about
+contact/index.html         contact form
+work/index.html            work index, filterable
+work/<slug>/index.html     one folder per case study
+assets/
+  css/site.css             the whole design system, one file
+  js/site.js               reveals, filtering, cursor, form
+  js/lenis.min.js          smooth scroll, vendored
+  fonts/                   Onest, subset variable woff2
+  img/                     shared project imagery
+  img/<slug>/              per project: feature, screenshots, logos
+functions/api/contact.js   Cloudflare Pages Function
+_headers                   caching and security headers
+_redirects                 old URLs, kept alive
 ```
+
+Clean URLs come from the folder-per-page layout, so `/work/tag-technologies/`
+is a directory with an `index.html` rather than a rewritten route. Nothing needs
+configuring for a new page to resolve.
+
+## Adding a case study
+
+The pattern is deliberate, so a new project drops in without touching the design
+system:
+
+1. **Create `work/<slug>/index.html`.** Copy an existing case study as the
+   starting point. The page shell (head, sprite, header, footer, script tags) is
+   identical on every page and should stay that way.
+2. **Put imagery in `assets/img/<slug>/`.** A `feature.webp` at 16:10 for the
+   grid and the page hero, plus whatever screenshots the write-up needs. WebP,
+   sized to what it is painted at, `width` and `height` always set.
+3. **Add the card** to `work/index.html` and, if it is one of the headline
+   projects, to the home page. Tags come from the fixed discipline list below,
+   and `data-tags` on the card is what the filter reads.
+4. **Register the URL** in `sitemap.xml`.
+
+Disciplines are a closed set, shared by the tags and the filter chips:
+`brand`, `research`, `ui`, `web`, `dev`, `testing`, `ecom`, `seo`. Each has an
+SVG symbol in the sprite at the top of every page. Adding a discipline means
+adding a symbol and a filter chip, not inventing a one-off label.
+
+Feature images sit on a paper-grain ground tinted from the project's own brand
+colour, with the screenshot placed differently per project so a grid of them
+does not read as six of the same picture.
 
 ## Running it
 
