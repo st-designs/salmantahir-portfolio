@@ -10,7 +10,7 @@
 /contact.html                      /contact/                  301
 /case-tag-technologies.html        /work/tag-technologies/     301
 /case-bizdigital.html              /work/                     301
-/case-pdf-chapter-splitter.html    /work/                     301
+/case-pdf-splitter.html            /work/                     301
 
 # legacy WordPress posts, dead since the migration off WP
 /2023/*                            /work/                     301
