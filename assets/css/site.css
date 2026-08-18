@@ -388,9 +388,9 @@ button.tag[aria-pressed="true"] svg{color:#fff}
 /* --------------------------------------------------------------------------
    CTA
    -------------------------------------------------------------------------- */
-/* The dark card needs air above it wherever it lands, otherwise it reads as
-   glued to the band it follows. */
-.cta-sec{padding:clamp(72px,9vw,116px) 0 clamp(28px,3.6vw,42px)}
+/* Equal air above and below, so the card sits centred in its own band.
+   The footer below carries the same ground, so the two read as one block. */
+.cta-sec{padding:clamp(72px,9vw,116px) 0}
 .cta{
   position:relative;isolation:isolate;overflow:hidden;
   background:var(--dark);color:var(--ink-dark-2);
@@ -398,14 +398,17 @@ button.tag[aria-pressed="true"] svg{color:#fff}
 }
 /* Wide enough that a two line heading stays two lines. The home page copy is
    short so it never needed the room; a case study CTA does. */
-.cta h2{color:var(--ink-dark);max-width:30ch;margin:0 auto}
+/* Narrow enough that every CTA heading breaks to two lines rather than
+   running to one long line or dropping a single orphan word. */
+.cta h2{color:var(--ink-dark);max-width:21ch;margin:0 auto}
 .cta-p{margin:18px auto 0;max-width:46ch;font-size:1.02rem}
 .cta-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px}
 
 /* --------------------------------------------------------------------------
    FOOTER
    -------------------------------------------------------------------------- */
-.ftr{padding:8px 0 36px}
+.ftr{padding:clamp(30px,4vw,44px) 0 clamp(34px,4.4vw,48px);background:var(--alt)}
+.ftr.band{background:var(--alt-2)}
 .ftr-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
 .ftr-c{color:var(--ink-3)}
 .ftr-n{display:flex;gap:8px}
@@ -627,7 +630,8 @@ button[disabled]{opacity:.6;cursor:progress}
 .cs-main{max-width:70ch}
 
 /* the rail: same surface as the bento cards on the home page */
-.rail{position:sticky;top:110px;display:grid;padding:8px;overflow:hidden}
+.rail{position:sticky;top:110px;display:grid;padding:8px;overflow:hidden;
+  background:var(--alt-2)}
 .rail-row{padding:13px 15px}
 .rail-row + .rail-row{border-top:1px solid rgba(34,26,28,.08)}
 .rail-k{display:block;margin-bottom:5px}
