@@ -13,9 +13,19 @@
 
 :root{
   /* ---- ground ---- */
+  /* Three grounds, derived in CIELAB rather than picked by eye.
+     --paper is the header ground on every page: almost white, and warm enough
+     that chroma rather than lightness is what separates it from the grey.
+     --alt always follows it, and --alt and --white alternate below, so the only
+     boundaries that ever occur are the two wide ones.
+       paper  #FFFBF8  L* 98.8  chroma 2.1
+       white  #FFFFFF  L* 100   chroma 0
+       alt    #F0EFED  L* 94.5  chroma 1.1
+     paper -> alt  dE2000 2.94    alt -> white  dE2000 3.41
+     A white header card on paper measures dE2000 2.25, so it still floats. */
   --white:#FFFFFF;
-  --paper:#FAF9F7;
-  --alt:#F5F4F2;
+  --paper:#FFFBF8;
+  --alt:#F0EFED;
   --dark:#191416;
 
   /* ---- ink: one ramp, faintly warmed toward the accent ---- */
@@ -234,7 +244,7 @@ button.tag:hover{color:var(--accent);border-color:var(--accent-line)}
 button.tag[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;
   --bleed:var(--accent-hover)}
 button.tag[aria-pressed="true"] svg{color:#fff}
-.case--alt .tag,.more .tag{background:rgba(255,255,255,.75)}
+.band .tag{background:rgba(255,255,255,.75)}
 
 /* filter chips, same component, selectable */
 /* Full width row under the heading rather than crammed beside it: the chips get
@@ -258,7 +268,8 @@ button.tag[aria-pressed="true"] svg{color:#fff}
    CASE STUDIES
    -------------------------------------------------------------------------- */
 .case{padding:clamp(72px,9vw,116px) 0}
-.case--alt{background:var(--alt)}
+/* the recessed half of the body alternation */
+.band{background:var(--alt)}
 /* Wide enough to hold the discipline pills on one line. They wrap to a second
    row below that, which reads as an overflow rather than a set. */
 .case-head{max-width:74ch}
@@ -268,7 +279,7 @@ button.tag[aria-pressed="true"] svg{color:#fff}
   aspect-ratio:16/10;background:var(--alt);
   transition:transform .6s var(--ease),box-shadow .6s var(--ease);
 }
-.case--alt .shot{background:var(--white)}
+.band .shot{background:var(--white)}
 .shot img{width:100%;height:100%;object-fit:cover;object-position:top center;
   transition:transform 1.6s var(--ease)}
 .shot--mark img{object-fit:contain;object-position:center;padding:11%}
@@ -290,7 +301,7 @@ button.tag[aria-pressed="true"] svg{color:#fff}
 /* --------------------------------------------------------------------------
    MORE WORK
    -------------------------------------------------------------------------- */
-.more{padding:clamp(72px,9vw,116px) 0;background:var(--alt)}
+.more{padding:clamp(72px,9vw,116px) 0}
 .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(24px,3vw,38px);
   margin-top:clamp(30px,3.6vw,44px)}
 .mini{display:block}
@@ -376,10 +387,9 @@ button.tag[aria-pressed="true"] svg{color:#fff}
 /* --------------------------------------------------------------------------
    CTA
    -------------------------------------------------------------------------- */
-/* No top padding by default: on the home page the section above already ends
-   on its own rhythm. A case study ends in running text, so it opts in. */
-.cta-sec{padding:0 0 clamp(28px,3.6vw,42px)}
-.related + .cta-sec{padding-top:clamp(64px,8vw,100px)}
+/* The dark card needs air above it wherever it lands, otherwise it reads as
+   glued to the band it follows. */
+.cta-sec{padding:clamp(72px,9vw,116px) 0 clamp(28px,3.6vw,42px)}
 .cta{
   position:relative;isolation:isolate;overflow:hidden;
   background:var(--dark);color:var(--ink-dark-2);
@@ -511,10 +521,10 @@ html.has-cursor,html.has-cursor *{cursor:none}
 /* --------------------------------------------------------------------------
    INNER PAGES: work, about, contact share one top block
    -------------------------------------------------------------------------- */
-.page-top{padding:calc(var(--pad) + 104px) 0 0}
+.page-top{padding:calc(var(--pad) + 104px) 0 clamp(40px,5vw,64px);background:var(--paper)}
 .page-lead{margin-top:20px;max-width:62ch;color:var(--ink-2);font-size:clamp(1rem,1.25vw,1.1rem)}
 .page-top .filters{margin-top:clamp(28px,3.4vw,38px)}
-.work-sec{padding:clamp(34px,4.5vw,52px) 0 0}
+.work-sec{padding:clamp(54px,6vw,76px) 0 clamp(60px,7vw,90px);background:var(--alt)}
 
 /* the tile media is a link only when there is somewhere to go */
 .mini-media{display:block}
@@ -531,8 +541,9 @@ html.has-cursor,html.has-cursor *{cursor:none}
 /* --------------------------------------------------------------------------
    CONTACT
    -------------------------------------------------------------------------- */
+.contact-sec,.about-sec{background:var(--alt)}
 .contact-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;
-  gap:clamp(32px,5vw,64px);align-items:start;padding:clamp(38px,5vw,60px) 0 0}
+  gap:clamp(32px,5vw,64px);align-items:start;padding:clamp(48px,6vw,72px) 0 clamp(60px,7vw,90px)}
 .field{display:block;margin-top:20px}
 .field:first-of-type{margin-top:0}
 .field-k{display:block;margin-bottom:9px;color:var(--ink-3)}
@@ -566,7 +577,7 @@ button[disabled]{opacity:.6;cursor:progress}
 /* --------------------------------------------------------------------------
    ABOUT
    -------------------------------------------------------------------------- */
-.about-body{padding:clamp(38px,5vw,60px) 0 0;
+.about-body{padding:clamp(48px,6vw,72px) 0 clamp(60px,7vw,90px);
   display:grid;grid-template-columns:minmax(0,1fr) 292px;
   gap:clamp(36px,5vw,68px);align-items:start}
 .about-main{max-width:70ch}
@@ -609,6 +620,9 @@ button[disabled]{opacity:.6;cursor:progress}
 .cs-feature{display:block;margin-top:clamp(30px,4vw,46px);overflow:hidden;aspect-ratio:16/10}
 .cs-feature img{width:100%;height:100%;object-fit:cover;object-position:center}
 
+/* The one place paper meets white: the header block ends in a full bleed
+   feature image, so the image is the boundary and the argument gets the
+   cleaner reading ground. */
 .cs-body-sec{background:var(--white)}
 .cs-body{padding:clamp(54px,7vw,86px) 0 clamp(64px,8vw,104px);
   display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:clamp(36px,5vw,68px);align-items:start}
