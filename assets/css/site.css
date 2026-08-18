@@ -22,8 +22,8 @@
   --ink:#221A1C;        /* headings and primary text */
   --ink-2:#5A5052;      /* body copy */
   --ink-3:#6F6467;      /* meta, labels, captions  (AA on every ground) */
-  --ink-dark:#F2EFEF;   /* primary text on dark */
-  --ink-dark-2:#A99EA1; /* body copy on dark */
+  --ink-dark:#F7F6F6;   /* primary text on dark, neutral rather than warm */
+  --ink-dark-2:#AEA9A9; /* body copy on dark */
 
   --line:#E7E3E1;
   --line-2:#DAD4D2;
@@ -141,7 +141,7 @@ html.selpaint ::-moz-selection{background:transparent;color:var(--ink)}
 .btn-secondary{background:var(--white);border:1px solid var(--line-2);color:var(--ink);
   --bleed:var(--accent-wash)}
 .btn-secondary:hover{border-color:var(--accent-line);color:var(--accent)}
-.btn-ondark{border:1px solid rgba(242,239,239,.24);color:var(--ink-dark);--bleed:rgba(139,58,71,.55)}
+.btn-ondark{border:1px solid rgba(247,246,246,.26);color:var(--ink-dark);--bleed:rgba(139,58,71,.55)}
 .arw{width:15px;height:15px;flex:none;transition:transform .4s var(--ease)}
 .btn:hover .arw{transform:translate(2px,-2px)}
 
@@ -230,6 +230,10 @@ html.selpaint ::-moz-selection{background:transparent;color:var(--ink)}
    filterable work index is what these will link to. */
 button.tag{font-family:inherit;cursor:pointer;--bleed:var(--accent-wash)}
 button.tag:hover{color:var(--accent);border-color:var(--accent-line)}
+/* a pill on a card selects that discipline in the filter above it */
+button.tag[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;
+  --bleed:var(--accent-hover)}
+button.tag[aria-pressed="true"] svg{color:#fff}
 .case--alt .tag,.more .tag{background:rgba(255,255,255,.75)}
 
 /* filter chips, same component, selectable */
@@ -449,7 +453,11 @@ html.has-cursor,html.has-cursor *{cursor:none}
 .marquee{position:fixed;z-index:298;pointer-events:none;background:rgba(139,58,71,.09);
   border:1px solid var(--accent);border-radius:4px}
 .sel-layer{position:absolute;top:0;left:0;z-index:5;pointer-events:none}
-.sel-rect{position:absolute;background:rgba(139,58,71,.28)}
+/* Selection is painted rather than native so it can carry a squircle. The wash
+   has to flip on dark ground: maroon on near-black is invisible, so rects over
+   a dark section get a light wash instead. */
+.sel-rect{position:absolute;background:rgba(139,58,71,.30)}
+.sel-rect.on-dark{background:rgba(255,247,248,.34)}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}

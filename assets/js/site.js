@@ -191,12 +191,16 @@
       if (!sel || sel.isCollapsed || !sel.rangeCount) return;
       var frag = document.createDocumentFragment();
       for (var i = 0; i < sel.rangeCount; i++){
-        var rects = sel.getRangeAt(i).getClientRects();
+        var range = sel.getRangeAt(i);
+        var host = range.commonAncestorContainer;
+        if (host && host.nodeType === 3) host = host.parentElement;
+        var onDark = !!(host && host.closest && host.closest('.cta'));
+        var rects = range.getClientRects();
         for (var j = 0; j < rects.length; j++){
           var r = rects[j];
           if (r.width < 0.5 || r.height < 0.5) continue;
           var d = document.createElement('span');
-          d.className = 'sel-rect';
+          d.className = onDark ? 'sel-rect on-dark' : 'sel-rect';
           d.style.left = (r.left + window.scrollX - 2.5) + 'px';
           d.style.top = (r.top + window.scrollY) + 'px';
           d.style.width = (r.width + 5) + 'px';
@@ -356,6 +360,19 @@
     document.addEventListener('mouseleave', function(){ cur.classList.remove('on'); });
     document.addEventListener('mouseenter', function(){ cur.classList.add('on'); });
   }
+
+  /* ---- a pill on a card selects that discipline in the filter above it ---- */
+  document.addEventListener('click', function(e){
+    var pill = e.target.closest && e.target.closest('.mini button.tag, .rel button.tag');
+    if (!pill) return;
+    e.preventDefault();
+    var tag = pill.dataset.tag;
+    var bar = document.getElementById('filters');
+    if (!bar || !tag) return;
+    var chip = bar.querySelector('.chip[data-tag="' + tag + '"]');
+    if (chip) chip.click();
+    bar.scrollIntoView({behavior: 'smooth', block: 'center'});
+  });
 
   /* ---- work index: release cards in batches instead of paginating ---- */
   var wg = document.getElementById('workGrid');
