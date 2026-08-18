@@ -13,27 +13,20 @@
 
 :root{
   /* ---- ground ---- */
-  /* Two grounds, alternating, derived in CIELAB rather than picked by eye.
-       paper  #FFFEF9  L* 99.6  chroma 2.6   cream, the hero and every other band
-       alt    #FBF6F1  L* 97.1  chroma 3.1   a deeper paper tone, still warm
-     paper -> alt  dE2000 2.46
-     Both are warm on purpose. The accent is a warm maroon, so a neutral grey
-     would leave it as the only warm thing on the page; keeping both grounds
-     warm puts it at the saturated end of one family instead.
-
-     Two tones, not three. Three warm grounds cannot all sit near white and all
-     stay distinguishable: the usable range is about 5 L* wide, two boundaries
-     need roughly 2.5 each, and the third tone still has to clear the white
-     header card. There is no solution. The hero earns its distinction from
-     full viewport height, centred composition, the largest type on the site
-     and the accent wash below, none of which cost the system its clarity.
-
+  /* Three grounds. --hero opens every page and is never part of the body
+     rotation; --alt and --alt-2 alternate below it.
+       hero   #FBF6F1  L* 97.1  chroma 3.10
+       alt    #FFFEF9  L* 99.6  chroma 2.56   first band under the hero
+       alt-2  #FBF6F2  L* 97.2  chroma 2.69
+     Adjacencies that occur: hero -> alt dE2000 2.46, alt -> alt-2 dE2000 2.63.
+     hero and alt-2 measure dE2000 0.51 apart, effectively one colour, but the
+     rotation never places them together so the sequence still reads.
      --white is not a ground. It is reserved for elevated surfaces, the header
-     bar, cards, buttons and form fields, which is what lets them read as
-     lifted (dE2000 2.49 on paper, 3.43 on alt). */
+     bar, cards, buttons and form fields (dE2000 3.43 / 2.49 / 3.18). */
   --white:#FFFFFF;
-  --paper:#FFFEF9;
-  --alt:#FBF6F1;
+  --hero:#FBF6F1;
+  --alt:#FFFEF9;
+  --alt-2:#FBF6F2;
   --dark:#191416;
 
   /* ---- ink: one ramp, faintly warmed toward the accent ---- */
@@ -75,7 +68,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;scroll-padding-top:120px}
 body{
-  font-family:var(--font);background:var(--paper);color:var(--ink-2);
+  font-family:var(--font);background:var(--alt);color:var(--ink-2);
   font-size:17px;line-height:1.6;font-weight:400;overflow-x:hidden;
 }
 img{max-width:100%;display:block}
@@ -212,7 +205,7 @@ html.selpaint ::-moz-selection{background:transparent;color:var(--ink)}
    HERO: sized so the whole banner sits inside one viewport
    -------------------------------------------------------------------------- */
 .hero{
-  position:relative;isolation:isolate;background:var(--paper);
+  position:relative;isolation:isolate;background:var(--hero);
   min-height:100svh;display:grid;align-content:center;text-align:center;
   padding:clamp(118px,15vh,150px) 0 clamp(74px,10vh,96px);
 }
@@ -276,8 +269,8 @@ button.tag[aria-pressed="true"] svg{color:#fff}
    CASE STUDIES
    -------------------------------------------------------------------------- */
 .case{padding:clamp(72px,9vw,116px) 0}
-/* the recessed half of the body alternation */
-.band{background:var(--alt)}
+/* the second half of the body alternation */
+.band{background:var(--alt-2)}
 /* Wide enough to hold the discipline pills on one line. They wrap to a second
    row below that, which reads as an overflow rather than a set. */
 .case-head{max-width:74ch}
@@ -529,7 +522,7 @@ html.has-cursor,html.has-cursor *{cursor:none}
 /* --------------------------------------------------------------------------
    INNER PAGES: work, about, contact share one top block
    -------------------------------------------------------------------------- */
-.page-top{padding:calc(var(--pad) + 104px) 0 clamp(40px,5vw,64px);background:var(--paper)}
+.page-top{padding:calc(var(--pad) + 104px) 0 clamp(40px,5vw,64px);background:var(--hero)}
 .page-lead{margin-top:20px;max-width:62ch;color:var(--ink-2);font-size:clamp(1rem,1.25vw,1.1rem)}
 .page-top .filters{margin-top:clamp(28px,3.4vw,38px)}
 .work-sec{padding:clamp(54px,6vw,76px) 0 clamp(60px,7vw,90px);background:var(--alt)}
@@ -611,7 +604,7 @@ button[disabled]{opacity:.6;cursor:progress}
    back to role and scope while moving through the argument, and losing it
    off the top means scrolling up to answer "who did what" again.
    -------------------------------------------------------------------------- */
-.cs-top{padding:calc(var(--pad) + 104px) 0 clamp(40px,5vw,64px);background:var(--paper)}
+.cs-top{padding:calc(var(--pad) + 104px) 0 clamp(40px,5vw,64px);background:var(--hero)}
 .back{display:inline-flex;align-items:center;gap:8px;color:var(--ink-3);
   font-size:.9rem;font-weight:600;padding:8px 14px;margin-bottom:26px;--bleed:var(--accent-wash)}
 .back svg{width:15px;height:15px}
@@ -695,8 +688,8 @@ figcaption a{color:var(--accent);text-decoration:underline;text-underline-offset
 
 /* related work, three across, above the CTA */
 /* its own band, the way .more is banded on the home page */
-.related{padding:clamp(72px,9vw,116px) 0;background:var(--paper)}
-.related .rel-shot{background:var(--alt)}
+.related{padding:clamp(72px,9vw,116px) 0;background:var(--alt-2)}
+.related .rel-shot{background:var(--white)}
 .rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
   margin-top:clamp(26px,3.4vw,36px)}
 .rel-shot{display:block;overflow:hidden;aspect-ratio:16/10;background:var(--alt);--bleed:transparent}
