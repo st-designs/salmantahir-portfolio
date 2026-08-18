@@ -14,18 +14,20 @@
 :root{
   /* ---- ground ---- */
   /* Three grounds, derived in CIELAB rather than picked by eye.
-     --paper is the header ground on every page: almost white, and warm enough
-     that chroma rather than lightness is what separates it from the grey.
-     --alt always follows it, and --alt and --white alternate below, so the only
-     boundaries that ever occur are the two wide ones.
-       paper  #FFFBF8  L* 98.8  chroma 2.1
+     --paper is the header ground on every page: near white and warm, with
+     chroma rather than lightness doing the separating. It is always followed
+     by --alt, and --alt and --white alternate below, so the only boundaries
+     that ever occur are paper/alt and alt/white.
+       paper  #FFFDF8  L* 99.3  chroma 2.6
        white  #FFFFFF  L* 100   chroma 0
-       alt    #F0EFED  L* 94.5  chroma 1.1
-     paper -> alt  dE2000 2.94    alt -> white  dE2000 3.41
-     A white header card on paper measures dE2000 2.25, so it still floats. */
+       alt    #F9F6F4  L* 97.1  chroma 1.5
+     paper -> alt  dE2000 2.20    alt -> white  dE2000 2.32
+     Both sit near the floor for a perceptible edge. They hold because these
+     are full bleed boundaries, which read far more easily than a small patch
+     of the same two colours would. Lightening alt further closes them. */
   --white:#FFFFFF;
-  --paper:#FFFBF8;
-  --alt:#F0EFED;
+  --paper:#FFFDF8;
+  --alt:#F9F6F4;
   --dark:#191416;
 
   /* ---- ink: one ramp, faintly warmed toward the accent ---- */
