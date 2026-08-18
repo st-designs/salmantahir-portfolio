@@ -328,7 +328,10 @@ button.tag[aria-pressed="true"] svg{color:#fff}
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:clamp(32px,4vw,46px)}
 /* The card surface. .b is the bento on the home page; .surf is the same thing
    anywhere else, so a card looks identical whichever page it is on. */
-.b,.surf{background:rgba(34,26,28,.022);border:1px solid rgba(34,26,28,.07);
+/* The card surface. .b is the bento on the home page; .surf is the same thing
+   anywhere else, so a card looks identical whichever page it is on. It carries
+   the second alternating tone, which reads as a panel on either ground. */
+.b,.surf{background:var(--alt-2);border:1px solid rgba(34,26,28,.07);
   --bleed:var(--accent-wash)}
 .b{padding:28px}
 .b:hover,.surf:hover{border-color:var(--accent-line)}
@@ -346,8 +349,10 @@ button.tag[aria-pressed="true"] svg{color:#fff}
 .b-k svg{width:14px;height:14px}
 .b-bio p{color:var(--ink-2);font-size:1rem}
 .b-bio p+p{margin-top:14px}
-.cert{margin-top:22px;display:inline-flex;align-items:center;gap:11px;background:var(--white);
-  border:1px solid var(--line);padding:10px 18px;font-size:.9rem;color:var(--ink-2);font-weight:500}
+.cert{margin-top:22px;display:inline-flex;align-items:center;gap:11px;
+  background:rgba(255,255,255,.55);border:1px solid var(--line);padding:10px 18px;
+  font-size:.9rem;color:var(--ink-2);font-weight:500;--bleed:var(--accent-wash)}
+.cert:hover{border-color:var(--accent-line);color:var(--accent)}
 .cert img{width:18px;height:18px;border-radius:4px}
 
 .entry{display:flex;gap:13px;align-items:flex-start}
@@ -367,9 +372,14 @@ button.tag[aria-pressed="true"] svg{color:#fff}
   font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   padding:3px 9px;border-radius:9px;corner-shape:squircle;
 }
-.badge{background:rgba(168,56,74,.19);border:1px solid rgba(168,56,74,.34);color:var(--accent-live)}
+.badge{background:rgba(168,56,74,.19);border:1px solid rgba(168,56,74,.34);color:var(--accent-live);
+  --bleed:rgba(168,56,74,.30)}
 .award{margin-top:6px;background:rgba(139,58,71,.13);border:1px solid rgba(139,58,71,.28);
-  color:var(--accent)}
+  color:var(--accent);--bleed:rgba(139,58,71,.22)}
+/* These are notes rather than controls, so they lift and take the bleed but
+   never a pointer: nothing happens if you click one. */
+.badge:hover{border-color:rgba(168,56,74,.55)}
+.award:hover{border-color:var(--accent-line)}
 .award svg{width:10px;height:10px;flex:none}
 
 .kit{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
@@ -630,8 +640,7 @@ button[disabled]{opacity:.6;cursor:progress}
 .cs-main{max-width:70ch}
 
 /* the rail: same surface as the bento cards on the home page */
-.rail{position:sticky;top:110px;display:grid;padding:8px;overflow:hidden;
-  background:var(--alt-2)}
+.rail{position:sticky;top:110px;display:grid;padding:8px;overflow:hidden}
 .rail-row{padding:13px 15px}
 .rail-row + .rail-row{border-top:1px solid rgba(34,26,28,.08)}
 .rail-k{display:block;margin-bottom:5px}
