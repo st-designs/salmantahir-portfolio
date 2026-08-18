@@ -14,18 +14,26 @@
 :root{
   /* ---- ground ---- */
   /* Two grounds, alternating, derived in CIELAB rather than picked by eye.
-     Dropping pure white out of the rotation is what makes this work: the off
-     white no longer has to differ from #FFF as well, so it can sit lower and
-     the one boundary that matters gets wider.
-       paper  #FFFEF8  L* 99.6  chroma 3.06   warm, the hero and every other band
-       alt    #F6F5F5  L* 96.6  chroma 0.35   near neutral, the in between band
-     paper -> alt  dE2000 3.53
-     --white is no longer a ground. It is reserved for elevated surfaces, the
-     header bar, cards, buttons and form fields, which is what lets them read
-     as lifted off either band (dE2000 2.96 on paper, 2.03 on alt). */
+       paper  #FFFEF9  L* 99.6  chroma 2.6   cream, the hero and every other band
+       alt    #FBF6F1  L* 97.1  chroma 3.1   a deeper paper tone, still warm
+     paper -> alt  dE2000 2.46
+     Both are warm on purpose. The accent is a warm maroon, so a neutral grey
+     would leave it as the only warm thing on the page; keeping both grounds
+     warm puts it at the saturated end of one family instead.
+
+     Two tones, not three. Three warm grounds cannot all sit near white and all
+     stay distinguishable: the usable range is about 5 L* wide, two boundaries
+     need roughly 2.5 each, and the third tone still has to clear the white
+     header card. There is no solution. The hero earns its distinction from
+     full viewport height, centred composition, the largest type on the site
+     and the accent wash below, none of which cost the system its clarity.
+
+     --white is not a ground. It is reserved for elevated surfaces, the header
+     bar, cards, buttons and form fields, which is what lets them read as
+     lifted (dE2000 2.49 on paper, 3.43 on alt). */
   --white:#FFFFFF;
-  --paper:#FFFEF8;
-  --alt:#F6F5F5;
+  --paper:#FFFEF9;
+  --alt:#FBF6F1;
   --dark:#191416;
 
   /* ---- ink: one ramp, faintly warmed toward the accent ---- */
@@ -209,7 +217,7 @@ html.selpaint ::-moz-selection{background:transparent;color:var(--ink)}
   padding:clamp(118px,15vh,150px) 0 clamp(74px,10vh,96px);
 }
 .hero::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(76% 56% at 50% 34%,rgba(139,58,71,.05),transparent 72%)}
+  background:radial-gradient(76% 56% at 50% 34%,rgba(139,58,71,.065),transparent 72%)}
 
 .hero h1{max-width:17ch;margin:0 auto}
 .lead{margin:clamp(22px,3vw,32px) auto 0;max-width:56ch;
