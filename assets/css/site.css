@@ -398,9 +398,10 @@ button.tag[aria-pressed="true"] svg{color:#fff}
 /* --------------------------------------------------------------------------
    CTA
    -------------------------------------------------------------------------- */
-/* Equal air above and below, so the card sits centred in its own band.
-   The footer below carries the same ground, so the two read as one block. */
-.cta-sec{padding:clamp(72px,9vw,116px) 0}
+/* The CTA card and the footer are one closing block on the same ground.
+   The block gets equal air above and below; between the two there is only
+   a small gap, so they read as related rather than stacked. */
+.cta-sec{padding:clamp(72px,9vw,116px) 0 0}
 .cta{
   position:relative;isolation:isolate;overflow:hidden;
   background:var(--dark);color:var(--ink-dark-2);
@@ -417,7 +418,10 @@ button.tag[aria-pressed="true"] svg{color:#fff}
 /* --------------------------------------------------------------------------
    FOOTER
    -------------------------------------------------------------------------- */
-.ftr{padding:clamp(30px,4vw,44px) 0 clamp(34px,4.4vw,48px);background:var(--alt)}
+/* One closing block: the CTA card and the footer share a ground, and the
+   footer works out which one from the CTA above it. */
+.ftr{padding:clamp(26px,3.2vw,38px) 0 clamp(72px,9vw,116px);background:var(--alt)}
+body:has(.cta-sec.band) .ftr{background:var(--alt-2)}
 .ftr.band{background:var(--alt-2)}
 .ftr-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
 .ftr-c{color:var(--ink-3)}
@@ -640,7 +644,8 @@ button[disabled]{opacity:.6;cursor:progress}
 .cs-main{max-width:70ch}
 
 /* the rail: same surface as the bento cards on the home page */
-.rail{position:sticky;top:110px;display:grid;padding:8px;overflow:hidden}
+.rail{position:sticky;top:110px;display:grid;padding:8px;overflow:hidden;
+  background:var(--alt-2);border-color:rgba(34,26,28,.09)}
 .rail-row{padding:13px 15px}
 .rail-row + .rail-row{border-top:1px solid rgba(34,26,28,.08)}
 .rail-k{display:block;margin-bottom:5px}
