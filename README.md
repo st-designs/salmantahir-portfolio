@@ -61,6 +61,12 @@ _redirects                 old URLs, kept alive
 Clean URLs come from the folder-per-page layout, so `/work/tag-technologies/` is a directory with
 an `index.html` rather than a rewritten route. Nothing needs configuring for a new page to resolve.
 
+`site.css` and `site.js` are linked with a `?v=` query. Both are edited in place rather than
+written to a hashed filename, and `_headers` gives them a day at the edge, so without the query a
+deploy can leave visitors on new HTML and a stale stylesheet for up to 24 hours. **Bump the number
+on every page whenever either file changes.** The images and fonts do not need this; they are
+replaced by filename.
+
 ## Adding a case study
 
 The pattern is deliberate, so a new project drops in without touching the design system.
