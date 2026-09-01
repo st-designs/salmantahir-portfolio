@@ -364,7 +364,8 @@ button.tag[aria-pressed="true"] svg{color:#fff}
 .entry-t{font-size:.98rem;font-weight:600;letter-spacing:-.015em;line-height:1.3;color:var(--ink);
   display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .entry-s{font-size:.87rem;color:var(--ink-2);margin-top:3px}
-.entry-d{font-size:.79rem;color:var(--ink-3);margin-top:5px}
+.entry-d{font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  line-height:1.4;color:var(--ink-3);margin-top:6px}
 /* One badge treatment for both: an accent tint with accent text, so a status
    and a credential read as the same kind of note. The live one carries a
    slightly deeper, redder tint to separate "now" from "already earned". */
