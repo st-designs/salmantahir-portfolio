@@ -389,11 +389,13 @@ button.tag[aria-pressed="true"] svg{color:#fff}
   border:1px solid var(--line);border-radius:10px;corner-shape:squircle}
 .kit img{width:16px;height:16px;object-fit:contain}
 /* Adobe pulled their marks from the open icon sets, so the current CC icons are
-   reproduced here as they actually are: a brand coloured tile with the letters */
+   reproduced here as they actually are: the dark brand tile with the letters on it.
+   These need .kit to outrank the white ground .kit span sets, or the tile washes out. */
 .kit .adobe{font-size:.6rem;font-weight:700;letter-spacing:.01em;border:0}
-.adobe-ps{background:#001E36;color:#31A8FF}
-.adobe-ai{background:#330000;color:#FF9A00}
-.adobe-ae{background:#00005B;color:#9999FF}
+.kit .adobe-ps{background:#001E36;color:#31A8FF}
+.kit .adobe-ai{background:#330000;color:#FF9A00}
+.kit .adobe-ae{background:#00005B;color:#9999FF}
+.kit .adobe-pr{background:#2A0634;color:#EA77FF}
 .about-foot{display:flex;justify-content:center;margin-top:clamp(32px,4vw,46px)}
 
 /* --------------------------------------------------------------------------
